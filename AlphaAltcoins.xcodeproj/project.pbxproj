@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		513B769229473CFA00BD200D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B769129473CFA00BD200D /* AppDelegate.swift */; };
 		513B769429473CFA00BD200D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B769329473CFA00BD200D /* SceneDelegate.swift */; };
-		513B769629473CFA00BD200D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B769529473CFA00BD200D /* ViewController.swift */; };
-		513B769929473CFA00BD200D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 513B769729473CFA00BD200D /* Main.storyboard */; };
 		513B769B29473CFC00BD200D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 513B769A29473CFC00BD200D /* Assets.xcassets */; };
 		513B769E29473CFC00BD200D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 513B769C29473CFC00BD200D /* LaunchScreen.storyboard */; };
+		513B76A729473D2F00BD200D /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 513B76A629473D2F00BD200D /* SwiftyGif */; };
+		513B76AA29473D4900BD200D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 513B76A929473D4900BD200D /* Alamofire */; };
+		513B76B22948973400BD200D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76B12948973400BD200D /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		513B768E29473CFA00BD200D /* AlphaAltcoins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlphaAltcoins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		513B769129473CFA00BD200D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		513B769329473CFA00BD200D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		513B769529473CFA00BD200D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		513B769829473CFA00BD200D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		513B769A29473CFC00BD200D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		513B769D29473CFC00BD200D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		513B769F29473CFC00BD200D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		513B76B12948973400BD200D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +31,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				513B76A729473D2F00BD200D /* SwiftyGif in Frameworks */,
+				513B76AA29473D4900BD200D /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +58,62 @@
 		513B769029473CFA00BD200D /* AlphaAltcoins */ = {
 			isa = PBXGroup;
 			children = (
-				513B769129473CFA00BD200D /* AppDelegate.swift */,
-				513B769329473CFA00BD200D /* SceneDelegate.swift */,
-				513B769529473CFA00BD200D /* ViewController.swift */,
-				513B769729473CFA00BD200D /* Main.storyboard */,
-				513B769A29473CFC00BD200D /* Assets.xcassets */,
-				513B769C29473CFC00BD200D /* LaunchScreen.storyboard */,
-				513B769F29473CFC00BD200D /* Info.plist */,
+				513B76B0294896CC00BD200D /* Heplers */,
+				513B76AC294895A000BD200D /* Services */,
+				513B76AB2948958D00BD200D /* Models */,
+				513B76B12948973400BD200D /* TabBarController.swift */,
+				513B76AF2948968B00BD200D /* Application */,
+				513B76AE2948962200BD200D /* SupportingFiles */,
 			);
 			path = AlphaAltcoins;
+			sourceTree = "<group>";
+		};
+		513B76AB2948958D00BD200D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		513B76AC294895A000BD200D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		513B76AD294895C500BD200D /* Extension+ */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Extension+";
+			sourceTree = "<group>";
+		};
+		513B76AE2948962200BD200D /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				513B769F29473CFC00BD200D /* Info.plist */,
+				513B769A29473CFC00BD200D /* Assets.xcassets */,
+				513B769C29473CFC00BD200D /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		513B76AF2948968B00BD200D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				513B769329473CFA00BD200D /* SceneDelegate.swift */,
+				513B769129473CFA00BD200D /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		513B76B0294896CC00BD200D /* Heplers */ = {
+			isa = PBXGroup;
+			children = (
+				513B76AD294895C500BD200D /* Extension+ */,
+			);
+			path = Heplers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +132,10 @@
 			dependencies = (
 			);
 			name = AlphaAltcoins;
+			packageProductDependencies = (
+				513B76A629473D2F00BD200D /* SwiftyGif */,
+				513B76A929473D4900BD200D /* Alamofire */,
+			);
 			productName = AlphaAltcoins;
 			productReference = 513B768E29473CFA00BD200D /* AlphaAltcoins.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +164,10 @@
 				Base,
 			);
 			mainGroup = 513B768529473CF900BD200D;
+			packageReferences = (
+				513B76A529473D2F00BD200D /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				513B76A829473D4900BD200D /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 513B768F29473CFA00BD200D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +184,6 @@
 			files = (
 				513B769E29473CFC00BD200D /* LaunchScreen.storyboard in Resources */,
 				513B769B29473CFC00BD200D /* Assets.xcassets in Resources */,
-				513B769929473CFA00BD200D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				513B769629473CFA00BD200D /* ViewController.swift in Sources */,
+				513B76B22948973400BD200D /* TabBarController.swift in Sources */,
 				513B769229473CFA00BD200D /* AppDelegate.swift in Sources */,
 				513B769429473CFA00BD200D /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +203,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		513B769729473CFA00BD200D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				513B769829473CFA00BD200D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		513B769C29473CFC00BD200D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,12 +337,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LBKPR9U7Q9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AlphaAltcoins/Info.plist;
+				INFOPLIST_FILE = AlphaAltcoins/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +349,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tirexgroup.AlphaAltcoins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +367,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LBKPR9U7Q9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AlphaAltcoins/Info.plist;
+				INFOPLIST_FILE = AlphaAltcoins/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +379,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tirexgroup.AlphaAltcoins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -358,6 +410,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		513B76A529473D2F00BD200D /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		513B76A829473D4900BD200D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		513B76A629473D2F00BD200D /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 513B76A529473D2F00BD200D /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+		513B76A929473D4900BD200D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 513B76A829473D4900BD200D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 513B768629473CF900BD200D /* Project object */;
 }
