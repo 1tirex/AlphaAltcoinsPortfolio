@@ -16,6 +16,7 @@
 		513B76B22948973400BD200D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76B12948973400BD200D /* TabBarController.swift */; };
 		513B76B62948C09F00BD200D /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76B52948C09F00BD200D /* CoinModel.swift */; };
 		513B76BC2948C1A600BD200D /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76BB2948C1A600BD200D /* Box.swift */; };
+		513B76BE2948C1FD00BD200D /* GetLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76BD2948C1FD00BD200D /* GetLinks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		513B76B12948973400BD200D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		513B76B52948C09F00BD200D /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		513B76BB2948C1A600BD200D /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		513B76BD2948C1FD00BD200D /* GetLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		513B76AC294895A000BD200D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				513B76BD2948C1FD00BD200D /* GetLinks.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				513B76B22948973400BD200D /* TabBarController.swift in Sources */,
 				513B769229473CFA00BD200D /* AppDelegate.swift in Sources */,
 				513B769429473CFA00BD200D /* SceneDelegate.swift in Sources */,
+				513B76BE2948C1FD00BD200D /* GetLinks.swift in Sources */,
 				513B76BC2948C1A600BD200D /* Box.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
