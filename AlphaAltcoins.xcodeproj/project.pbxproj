@@ -29,6 +29,8 @@
 		513B76D82948CC1F00BD200D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76D72948CC1F00BD200D /* ProfileViewController.swift */; };
 		513B76DA2948CC3000BD200D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76D92948CC3000BD200D /* ProfileViewModel.swift */; };
 		513B76DC2948F95A00BD200D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76DB2948F95A00BD200D /* StorageManager.swift */; };
+		513B76DF2949154E00BD200D /* PortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76DE2949154E00BD200D /* PortfolioCell.swift */; };
+		513B76E12949156500BD200D /* PortfolioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76E02949156500BD200D /* PortfolioCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		513B76D72948CC1F00BD200D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		513B76D92948CC3000BD200D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		513B76DB2948F95A00BD200D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		513B76DE2949154E00BD200D /* PortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCell.swift; sourceTree = "<group>"; };
+		513B76E02949156500BD200D /* PortfolioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 			children = (
 				513B76C22948C46600BD200D /* PortfolioViewController.swift */,
 				513B76C42948C48E00BD200D /* PortfolioViewModel.swift */,
+				513B76DD2949150800BD200D /* PortfolioCell */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -207,6 +212,15 @@
 				513B76D92948CC3000BD200D /* ProfileViewModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		513B76DD2949150800BD200D /* PortfolioCell */ = {
+			isa = PBXGroup;
+			children = (
+				513B76DE2949154E00BD200D /* PortfolioCell.swift */,
+				513B76E02949156500BD200D /* PortfolioCellViewModel.swift */,
+			);
+			path = PortfolioCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				513B76B62948C09F00BD200D /* CoinModel.swift in Sources */,
+				513B76E12949156500BD200D /* PortfolioCellViewModel.swift in Sources */,
 				513B76B22948973400BD200D /* TabBarController.swift in Sources */,
 				513B76D02948CBBE00BD200D /* PlusViewController.swift in Sources */,
 				513B76DC2948F95A00BD200D /* StorageManager.swift in Sources */,
@@ -300,6 +315,7 @@
 				513B76C32948C46600BD200D /* PortfolioViewController.swift in Sources */,
 				513B76D32948CBEC00BD200D /* AlertsViewController.swift in Sources */,
 				513B76BE2948C1FD00BD200D /* GetLinks.swift in Sources */,
+				513B76DF2949154E00BD200D /* PortfolioCell.swift in Sources */,
 				513B76BC2948C1A600BD200D /* Box.swift in Sources */,
 				513B76DA2948CC3000BD200D /* ProfileViewModel.swift in Sources */,
 				513B76CE2948CBB100BD200D /* PlusViewModel.swift in Sources */,

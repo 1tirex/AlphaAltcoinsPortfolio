@@ -8,9 +8,8 @@
 import Foundation
 
 class StorageManager {
-
     static let shared = StorageManager()
-    
+
     private let defaults = UserDefaults.standard
     private let coinKey = "coinsKey"
     
@@ -24,7 +23,6 @@ class StorageManager {
     }
     
     func fetchCoins() -> [MarketsInfo] {
-
         guard let data = defaults.data(forKey: coinKey) else { return [] }
         // Вот тут не понимаю как внедрить Alamofire
         guard let coins = try? JSONDecoder().decode([MarketsInfo].self, from: data) else { return [] }
