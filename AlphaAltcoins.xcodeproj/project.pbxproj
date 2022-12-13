@@ -15,6 +15,7 @@
 		513B76AA29473D4900BD200D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 513B76A929473D4900BD200D /* Alamofire */; };
 		513B76B22948973400BD200D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76B12948973400BD200D /* TabBarController.swift */; };
 		513B76B62948C09F00BD200D /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76B52948C09F00BD200D /* CoinModel.swift */; };
+		513B76BC2948C1A600BD200D /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76BB2948C1A600BD200D /* Box.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		513B769F29473CFC00BD200D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		513B76B12948973400BD200D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		513B76B52948C09F00BD200D /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
+		513B76BB2948C1A600BD200D /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				513B76AD294895C500BD200D /* Extension+ */,
+				513B76BB2948C1A600BD200D /* Box.swift */,
 			);
 			path = Heplers;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				513B76B22948973400BD200D /* TabBarController.swift in Sources */,
 				513B769229473CFA00BD200D /* AppDelegate.swift in Sources */,
 				513B769429473CFA00BD200D /* SceneDelegate.swift in Sources */,
+				513B76BC2948C1A600BD200D /* Box.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
