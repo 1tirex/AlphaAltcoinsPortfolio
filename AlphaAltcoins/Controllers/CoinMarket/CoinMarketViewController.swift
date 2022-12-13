@@ -11,7 +11,7 @@ class CoinMarketViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemBackground
         setupNavigationBar()
     }
     private func setupNavigationBar() {
@@ -24,5 +24,9 @@ class CoinMarketViewController: UIViewController {
         
         self.navigationController?.navigationBar.standardAppearance = navBarAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+    }
+    
+    deinit {
+        print("CoinMarketViewController")
     }
 }

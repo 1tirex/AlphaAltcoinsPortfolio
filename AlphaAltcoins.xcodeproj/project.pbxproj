@@ -28,6 +28,7 @@
 		513B76D52948CBFE00BD200D /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76D42948CBFE00BD200D /* AlertsViewModel.swift */; };
 		513B76D82948CC1F00BD200D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76D72948CC1F00BD200D /* ProfileViewController.swift */; };
 		513B76DA2948CC3000BD200D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76D92948CC3000BD200D /* ProfileViewModel.swift */; };
+		513B76DC2948F95A00BD200D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76DB2948F95A00BD200D /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		513B76D42948CBFE00BD200D /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
 		513B76D72948CC1F00BD200D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		513B76D92948CC3000BD200D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		513B76DB2948F95A00BD200D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				513B76BD2948C1FD00BD200D /* GetLinks.swift */,
 				513B76BF2948C27600BD200D /* NetworkManager.swift */,
+				513B76DB2948F95A00BD200D /* StorageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				513B76B62948C09F00BD200D /* CoinModel.swift in Sources */,
 				513B76B22948973400BD200D /* TabBarController.swift in Sources */,
 				513B76D02948CBBE00BD200D /* PlusViewController.swift in Sources */,
+				513B76DC2948F95A00BD200D /* StorageManager.swift in Sources */,
 				513B76C52948C48E00BD200D /* PortfolioViewModel.swift in Sources */,
 				513B769229473CFA00BD200D /* AppDelegate.swift in Sources */,
 				513B76C02948C27600BD200D /* NetworkManager.swift in Sources */,

@@ -11,7 +11,7 @@ class AlertsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemBackground
         setupNavigationBar()
     }
     private func setupNavigationBar() {
@@ -24,5 +24,9 @@ class AlertsViewController: UIViewController {
         
         self.navigationController?.navigationBar.standardAppearance = navBarAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+    }
+    
+    deinit {
+        print("AlertsViewController")
     }
 }
