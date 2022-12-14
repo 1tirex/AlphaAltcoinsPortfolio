@@ -8,8 +8,6 @@
 import Foundation
 
 protocol PortfolioViewModelProtocol {
-    //    var navigationName: String { get }
-    //    init(markets: MarketsInfo)
     var walletLabel: String { get }
     func reloadWallet() -> String
     func fetchMarkets(completion: @escaping() -> Void)

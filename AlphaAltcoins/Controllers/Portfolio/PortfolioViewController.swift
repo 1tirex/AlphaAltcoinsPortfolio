@@ -9,43 +9,40 @@ import UIKit
 
 final class PortfolioViewController: UIViewController {
     
-    private var activityIndicator: UIActivityIndicatorView?
     private let walletLabel: UILabel = {
         let label = UILabel()
-        
+        label.text = "0.00$"
         return label
     }()
-    private let tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.register(PortfolioCell.self,
-                       forCellReuseIdentifier: PortfolioCell.identifier)
-        return table
-    }()
+    
+    private let activityIndicator = UIActivityIndicatorView()
+    private let tableView = UITableView()
     
     private var viewModel: PortfolioViewModelProtocol! {
         didSet {
             viewModel.fetchMarkets { [weak self] in
                 self?.tableView.reloadData()
-                self?.activityIndicator?.stopAnimating()
+                self?.activityIndicator.stopAnimating()
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+//        view.backgroundColor = UIColor.colorWith(name: Resources.Colors.background)
+    
+        view.addSubview(walletLabel)
         viewModel = PortfolioViewModel()
-        view.addSubview(tableView)
-        tableView.rowHeight = 100
-        view.backgroundColor = .systemBackground
-        activityIndicator = showActivityIndicator(in: view)
+        
+        showActivityIndicator(in: view)
         setupNavigationBar()
+        setupTableView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+        walletLabel.frame = view.bounds
     }
     
     private func setupNavigationBar() {
@@ -60,15 +57,27 @@ final class PortfolioViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
-    private func showActivityIndicator(in view: UIView) -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
+    private func showActivityIndicator(in view: UIView) {
+        activityIndicator.style = .large
         activityIndicator.color = .systemIndigo
-        activityIndicator.startAnimating()
         activityIndicator.center = view.center
+        activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
-        
         view.addSubview(activityIndicator)
-        return activityIndicator
+    }
+    
+    private func setupTableView() {
+        tableView.register(
+            PortfolioCell.self,
+            forCellReuseIdentifier: PortfolioCell.identifier)
+        tableView.rowHeight = 80
+        setTableViewDelegates()
+        view.addSubview(tableView)
+    }
+    
+    private func setTableViewDelegates() {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     deinit {
@@ -91,5 +100,5 @@ extension PortfolioViewController: UITableViewDataSource {
 }
 // MARK: - UITableViewDelegate
 extension PortfolioViewController: UITableViewDelegate {
-
+    
 }

@@ -10,15 +10,20 @@ import Foundation
 protocol PortfolioCellViewModelProtocol {
     var coinName: String { get }
     var coinTotal: String { get }
+    var coinPrice: String { get }
     var gainPercent: String { get }
     var gainProfit: String { get }
-    var imageData: String? { get }
+    var imageData: String { get }
     var exchenge: String { get }
     var color: String { get }
     init(coin: MarketsInfo)
 }
 
 class PortfolioCellViewModel: PortfolioCellViewModelProtocol {
+    var coinPrice: String {
+        coin.totalPrice ?? ""
+    }
+    
     var color: String {
         choiceColor(validation: gainPercent)
     }
@@ -43,7 +48,7 @@ class PortfolioCellViewModel: PortfolioCellViewModelProtocol {
         coin.name ?? ""
     }
     
-    var imageData: String? {
+    var imageData: String {
         "logo"
     }
     

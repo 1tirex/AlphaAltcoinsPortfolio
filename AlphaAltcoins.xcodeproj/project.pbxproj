@@ -31,6 +31,8 @@
 		513B76DC2948F95A00BD200D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76DB2948F95A00BD200D /* StorageManager.swift */; };
 		513B76DF2949154E00BD200D /* PortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76DE2949154E00BD200D /* PortfolioCell.swift */; };
 		513B76E12949156500BD200D /* PortfolioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76E02949156500BD200D /* PortfolioCellViewModel.swift */; };
+		51EBAB2D294A0ECE007BB463 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EBAB2C294A0ECE007BB463 /* Resources.swift */; };
+		51EBAB2F294A1FA6007BB463 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EBAB2E294A1FA5007BB463 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		513B76DB2948F95A00BD200D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		513B76DE2949154E00BD200D /* PortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCell.swift; sourceTree = "<group>"; };
 		513B76E02949156500BD200D /* PortfolioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCellViewModel.swift; sourceTree = "<group>"; };
+		51EBAB2C294A0ECE007BB463 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		51EBAB2E294A1FA5007BB463 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +96,10 @@
 		513B769029473CFA00BD200D /* AlphaAltcoins */ = {
 			isa = PBXGroup;
 			children = (
+				513B76B0294896CC00BD200D /* Heplers */,
 				513B76AB2948958D00BD200D /* Models */,
 				513B76AC294895A000BD200D /* Services */,
 				513B76C62948CA6400BD200D /* Controllers */,
-				513B76B0294896CC00BD200D /* Heplers */,
 				513B76AF2948968B00BD200D /* Application */,
 				513B76AE2948962200BD200D /* SupportingFiles */,
 			);
@@ -123,6 +127,7 @@
 		513B76AD294895C500BD200D /* Extension+ */ = {
 			isa = PBXGroup;
 			children = (
+				51EBAB2E294A1FA5007BB463 /* UIColor+.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			children = (
 				513B76AD294895C500BD200D /* Extension+ */,
 				513B76BB2948C1A600BD200D /* Box.swift */,
+				51EBAB2C294A0ECE007BB463 /* Resources.swift */,
 			);
 			path = Heplers;
 			sourceTree = "<group>";
@@ -310,11 +316,13 @@
 				513B769229473CFA00BD200D /* AppDelegate.swift in Sources */,
 				513B76C02948C27600BD200D /* NetworkManager.swift in Sources */,
 				513B76D82948CC1F00BD200D /* ProfileViewController.swift in Sources */,
+				51EBAB2D294A0ECE007BB463 /* Resources.swift in Sources */,
 				513B76CB2948CB3B00BD200D /* CoinMarketViewModel.swift in Sources */,
 				513B769429473CFA00BD200D /* SceneDelegate.swift in Sources */,
 				513B76C32948C46600BD200D /* PortfolioViewController.swift in Sources */,
 				513B76D32948CBEC00BD200D /* AlertsViewController.swift in Sources */,
 				513B76BE2948C1FD00BD200D /* GetLinks.swift in Sources */,
+				51EBAB2F294A1FA6007BB463 /* UIColor+.swift in Sources */,
 				513B76DF2949154E00BD200D /* PortfolioCell.swift in Sources */,
 				513B76BC2948C1A600BD200D /* Box.swift in Sources */,
 				513B76DA2948CC3000BD200D /* ProfileViewModel.swift in Sources */,
