@@ -11,7 +11,6 @@ protocol PortfolioCellViewModelProtocol {
     var coinName: String { get }
     var coinTotal: String { get }
     var coinPrice: String { get }
-    var gainPercent: String { get }
     var gainProfit: String { get }
     var imageData: String { get }
     var exchenge: String { get }
@@ -21,23 +20,19 @@ protocol PortfolioCellViewModelProtocol {
 
 class PortfolioCellViewModel: PortfolioCellViewModelProtocol {
     var coinPrice: String {
-        coin.totalPrice ?? ""
+        "\(String(format: "%.2f", coin.price))$"
     }
     
     var color: String {
-        choiceColor(validation: gainPercent)
+        choiceColor(validation: gainProfit)
     }
     
     var coinTotal: String {
-        coin.totalPrice ?? ""
-    }
-    
-    var gainPercent: String {
-        coin.percent ?? ""
+        "\(String(format: "%.2f", removeCharacter(from: coin.totalPrice ?? "")))$"
     }
     
     var gainProfit: String {
-        coin.gainMoney ?? ""
+        "\(coin.gainMoney ?? "") (\(coin.percent ?? ""))"
     }
     
     var exchenge: String {
@@ -59,9 +54,19 @@ class PortfolioCellViewModel: PortfolioCellViewModelProtocol {
     }
     
     private func choiceColor(validation: String) -> String {
-        
         (validation.contains("-"))
         ? "systemPink"
-        : "green"
+        : "systemGreen"
+    }
+    
+
+    
+    private func removeCharacter(from text: String) -> Float {
+        let newCharSet = CharacterSet.init(charactersIn: "-+$%")
+        return getFloat(from: text.components(separatedBy: newCharSet).joined())
+    }
+    
+    private func getFloat(from text: String) -> Float {
+        Float(text) ?? 0
     }
 }

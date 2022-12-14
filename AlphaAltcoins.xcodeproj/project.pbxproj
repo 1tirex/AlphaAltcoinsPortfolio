@@ -31,6 +31,7 @@
 		513B76DC2948F95A00BD200D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76DB2948F95A00BD200D /* StorageManager.swift */; };
 		513B76DF2949154E00BD200D /* PortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76DE2949154E00BD200D /* PortfolioCell.swift */; };
 		513B76E12949156500BD200D /* PortfolioCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B76E02949156500BD200D /* PortfolioCellViewModel.swift */; };
+		51AA91E7294A46920042B0ED /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AA91E6294A46920042B0ED /* UIFont+.swift */; };
 		51EBAB2D294A0ECE007BB463 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EBAB2C294A0ECE007BB463 /* Resources.swift */; };
 		51EBAB2F294A1FA6007BB463 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EBAB2E294A1FA5007BB463 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		513B76DB2948F95A00BD200D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		513B76DE2949154E00BD200D /* PortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCell.swift; sourceTree = "<group>"; };
 		513B76E02949156500BD200D /* PortfolioCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCellViewModel.swift; sourceTree = "<group>"; };
+		51AA91E6294A46920042B0ED /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		51EBAB2C294A0ECE007BB463 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		51EBAB2E294A1FA5007BB463 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				51EBAB2E294A1FA5007BB463 /* UIColor+.swift */,
+				51AA91E6294A46920042B0ED /* UIFont+.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				513B76D82948CC1F00BD200D /* ProfileViewController.swift in Sources */,
 				51EBAB2D294A0ECE007BB463 /* Resources.swift in Sources */,
 				513B76CB2948CB3B00BD200D /* CoinMarketViewModel.swift in Sources */,
+				51AA91E7294A46920042B0ED /* UIFont+.swift in Sources */,
 				513B769429473CFA00BD200D /* SceneDelegate.swift in Sources */,
 				513B76C32948C46600BD200D /* PortfolioViewController.swift in Sources */,
 				513B76D32948CBEC00BD200D /* AlertsViewController.swift in Sources */,

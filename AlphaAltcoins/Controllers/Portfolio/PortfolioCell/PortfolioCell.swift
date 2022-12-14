@@ -13,7 +13,6 @@ class PortfolioCell: UITableViewCell {
     let coinName = UILabel()
     let coinTotal = UILabel()
     let coinPrice = UILabel()
-    let gainPercent = UILabel()
     let gainProfit = UILabel()
     let coinExchenge = UILabel()
     let coinImage = UIImageView()
@@ -23,8 +22,6 @@ class PortfolioCell: UITableViewCell {
             coinName.text = viewModel.coinName
             coinTotal.text = viewModel.coinTotal
             coinPrice.text = viewModel.coinPrice
-            gainPercent.text = viewModel.gainPercent
-            gainPercent.textColor = UIColor.colorWith(name: viewModel.color)
             gainProfit.text = viewModel.gainProfit
             gainProfit.textColor = UIColor.colorWith(name: viewModel.color)
             coinExchenge.text = viewModel.exchenge
@@ -34,7 +31,7 @@ class PortfolioCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubviews(coinName, coinTotal, gainProfit, gainPercent, coinExchenge, coinImage)
+        addSubviews(coinName, coinTotal, coinPrice, gainProfit, coinExchenge, coinImage)
         configure()
     }
     
@@ -49,7 +46,7 @@ class PortfolioCell: UITableViewCell {
     private func configure() {
         coinImage.contentMode = .scaleAspectFit
         coinImage.layer.cornerRadius = 20
-//        coinImage.backgroundColor = UIColor.colorWith(name: Resources.Colors.background)
+        coinImage.backgroundColor = UIColor.colorWith(name: Resources.Colors.background)
         coinImage.clipsToBounds = true
         setConstraints()
     }
@@ -62,12 +59,27 @@ class PortfolioCell: UITableViewCell {
         coinImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         coinName.translatesAutoresizingMaskIntoConstraints = false
+        coinName.numberOfLines = 1
+        coinName.font = UIFont.helvelticaRegular(with: 17)
         coinName.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
-        coinName.leadingAnchor.constraint(equalTo: coinImage.trailingAnchor, constant: 10).isActive = true
-        //fonts
+        coinName.leadingAnchor.constraint(equalTo: self.coinImage.trailingAnchor, constant: 10).isActive = true
         
         coinPrice.translatesAutoresizingMaskIntoConstraints = false
-        coinPrice.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 20).isActive = true
-        coinPrice.leadingAnchor.constraint(equalTo: coinImage.trailingAnchor, constant: 10).isActive = true
+        coinPrice.numberOfLines = 1
+        coinPrice.font = UIFont.helvelticaRegular(with: 15)
+        coinPrice.textColor = UIColor.colorWith(name: Resources.Colors.inActive)
+        coinPrice.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
+        coinPrice.leadingAnchor.constraint(equalTo: self.coinImage.trailingAnchor, constant: 10).isActive = true
+        
+        coinTotal.translatesAutoresizingMaskIntoConstraints = false
+        coinTotal.numberOfLines = 1
+        coinTotal.font = UIFont.helvelticaRegular(with: 17)
+        coinTotal.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        coinTotal.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
+        
+        gainProfit.translatesAutoresizingMaskIntoConstraints = false
+        gainProfit.font = UIFont.helvelticaRegular(with: 15)
+        gainProfit.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
+        gainProfit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
     }
 }

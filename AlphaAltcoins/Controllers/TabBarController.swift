@@ -23,8 +23,8 @@ class TabBarController: UITabBarController {
     }
     
     private func configure() {
-//        tabBar.tintColor = UIColor.colorWith(name: Resources.Colors.active)
-//        tabBar.unselectedItemTintColor = UIColor.colorWith(name: Resources.Colors.inActive)
+        tabBar.tintColor = UIColor.colorWith(name: Resources.Colors.active)
+        tabBar.unselectedItemTintColor = UIColor.colorWith(name: Resources.Colors.inActive)
         
         let portfolioController = generateVC(
             viewControler: PortfolioViewController(),

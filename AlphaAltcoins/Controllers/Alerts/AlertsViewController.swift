@@ -11,7 +11,7 @@ class AlertsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor.colorWith(name: Resources.Colors.secondaryBackground)
         setupNavigationBar()
     }
     private func setupNavigationBar() {
