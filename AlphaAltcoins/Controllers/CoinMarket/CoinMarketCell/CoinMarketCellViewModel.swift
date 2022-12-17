@@ -15,7 +15,7 @@ protocol CoinMarketCellViewModelProtocol {
     var marketCup: String { get }
     var change7Day: String { get }
     var change24Hour: String { get }
-    init(coin: AssetsCoin?)
+    init(coin: AssetsCoin)
 }
 
 class CoinMarketCellViewModel: CoinMarketCellViewModelProtocol {
@@ -51,9 +51,9 @@ class CoinMarketCellViewModel: CoinMarketCellViewModelProtocol {
     
     private let coin : AssetsCoin
     
-    required init(coin: AssetsCoin?) {
+    required init(coin: AssetsCoin) {
 //        guard let coin = coin else { return }
-        self.coin = coin ?? AssetsCoin(symbol: "1", name: "2", description: "3", price: 4, volume24Hour: 5, change1Hour: 6, change24Hour: 7, change7Day: 8, totalSupply: 9, maxSupply: 10, marketCup: 11)
+        self.coin = coin
     }
     
     private func removeCharacter(from text: String) -> Float {

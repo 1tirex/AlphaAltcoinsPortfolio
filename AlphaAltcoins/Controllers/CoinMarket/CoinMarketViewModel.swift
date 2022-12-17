@@ -35,22 +35,21 @@ class CoinMarketViewModel: CoinMarketViewModelProtocol {
     }
     
     func fetchSearch(from coin: String, completion: @escaping () -> Void) {
-            NetworkManager.shared.fetch(
-                type: Assets.self,
-                needFor: .coinSearch,
-                coin: coin.lowercased(),
-                completion: { [unowned self] result in
-                    switch result {
-                    case .success(let loadCoin):
-                        self.filterContentForSearchText(coin, loadCoin.asset)
-//                        self?.activityIndicator.stopAnimating()
-//                        self?.tableView.reloadData()
-                    case .failure(let error):
-                        print(error)
-                    }
-                    completion()
-                })
+        NetworkManager.shared.fetch(
+            type: Assets.self,
+            needFor: .coinSearch,
+            coin: coin.lowercased(),
+            completion: { [unowned self] result in
+                switch result {
+                case .success(let loadCoin):
+                    self.filterContentForSearchText(coin, loadCoin.asset)
+                case .failure(let error):
+                    print(error)
+                }
+                completion()
+            })
     }
+    
     
     private func filterContentForSearchText(_ searchText: String,
                                             _ loadMarket: AssetsCoin?) {
@@ -59,20 +58,44 @@ class CoinMarketViewModel: CoinMarketViewModelProtocol {
         } else {
             print("not found coin")
         }
-//        loadMarket.filter { market in
-//            market.symbol.uppercased() == searchText.uppercased()
-//        }
-//        tableView.reloadData()
     }
     
     func numberOfRows(for activity: Bool) -> Int {
         activity ? 1 : coins.count
-//        coins.count
     }
     
     func getCoinMarketViewModel(at indexPath: IndexPath, for activity: Bool) -> CoinMarketCellViewModelProtocol {
         activity
-        ? CoinMarketCellViewModel(coin: foundСoin)
+        ? CoinMarketCellViewModel(coin: foundСoin ?? AssetsCoin(symbol: "coin",
+                                                                name: "Not found",
+                                                                description: "",
+                                                                price: 0,
+                                                                volume24Hour: 0,
+                                                                change1Hour: 0,
+                                                                change24Hour: 0,
+                                                                change7Day: 0,
+                                                                totalSupply: 0,
+                                                                maxSupply: nil,
+                                                                marketCup: 0))
         : CoinMarketCellViewModel(coin: coins[indexPath.row])
+    }
+}
+
+enum StutusAlert: String {
+    case success
+    case failed
+    
+    var title: String {
+        switch self {
+        case .success: return "Success"
+        case .failed: return "Failed"
+        }
+    }
+    
+    var message: String {
+        switch self {
+        case .success: return  "Good job"
+        case .failed: return "Please check the entered data. All fields must be filled."
+        }
     }
 }

@@ -32,8 +32,8 @@ class CoinMarketViewController: UIViewController {
     private var viewModel: CoinMarketViewModelProtocol! {
         didSet {
             viewModel.fetchCoins { [weak self] in
-                self?.tableView.reloadData()
                 self?.activityIndicator.stopAnimating()
+                self?.tableView.reloadData()
             }
         }
     }
@@ -43,7 +43,7 @@ class CoinMarketViewController: UIViewController {
         viewModel = CoinMarketViewModel()
         
         setupUI()
-        addSubviews(tableView)
+        addSubviews(tableView, activityIndicator)
         showActivityIndicator(in: view)
         setConstraints()
     }
@@ -61,12 +61,10 @@ class CoinMarketViewController: UIViewController {
             switch traitCollection.userInterfaceStyle {
             case .dark:
                 return UIColor.colorWith(
-                    name: Resources.Colors.background)
-                ?? .systemBackground
+                    name: Resources.Colors.background) ?? .systemBackground
             default:
                 return UIColor.colorWith(
-                    name: Resources.Colors.secondaryBackground)
-                ?? .systemGray6
+                    name: Resources.Colors.secondaryBackground) ?? .systemGray6
             }
         }
     }
@@ -78,18 +76,13 @@ class CoinMarketViewController: UIViewController {
     }
     
     private func showActivityIndicator(in view: UIView) {
-        view.addSubview(activityIndicator)
         activityIndicator.style = .large
         activityIndicator.color = UIColor.colorWith(name: Resources.Colors.active)
-        activityIndicator.center = view.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
     }
     
     private func setNavigationBar() {
-        navigationItem.title = "Coin Market"
-        navigationController?.navigationBar.isTranslucent = false
-        
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithTransparentBackground()
         navBarAppearance.backgroundColor = .clear
@@ -103,51 +96,47 @@ class CoinMarketViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
+        navigationItem.title = "Coin Market"
+        navigationController?.navigationBar.isTranslucent = false
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+        navigationController?.navigationBar.tintColor = UIColor.colorWith(name: Resources.Colors.inActive)
         navigationItem.rightBarButtonItem =
         UIBarButtonItem(barButtonSystemItem: .search,
                         target: self,
                         action: #selector(showSearchTab))
-        showSearchBarButton(shouldShow: true)
-    }
-    
-    func showSearchBarButton(shouldShow: Bool) {
-        if shouldShow {
-            navigationController?.navigationBar.tintColor = UIColor.colorWith(name: Resources.Colors.active)
-            searchController.searchBar.isHidden = false
-        } else {
-            navigationController?.navigationBar.tintColor = UIColor.colorWith(name: Resources.Colors.inActive)
-            searchController.searchBar.isHidden = true
-        }
-    }
-    
-    func search(shouldShow: Bool) {
-        showSearchBarButton(shouldShow: !shouldShow)
-//        searchController.searchBar.showsCancelButton = shouldShow
-        navigationItem.titleView = shouldShow ? searchController.searchBar : nil
-    }
-    
-    private func setSearchController() {
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.delegate = self
-        
-        self.searchController.searchResultsUpdater = self
-        self.searchController.obscuresBackgroundDuringPresentation = false
-        self.definesPresentationContext = true
-        self.searchController.searchBar.placeholder = "BTC"
-        self.searchController.searchBar.barTintColor = .white
-        searchController.searchBar.isHidden = true
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = searchController
-        
-        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textField.font = UIFont.boldSystemFont(ofSize: 17)
-            textField.textColor = .white
-        }
     }
     
     @objc private func showSearchTab(sender: AnyObject) {
-        searchController.becomeFirstResponder()
-        search(shouldShow: true)
+        showSearchBarButton()
+    }
+    
+    private func showSearchBarButton() {
+        if navigationController?.navigationBar.tintColor == UIColor.colorWith(name: Resources.Colors.active) {
+            navigationController?.navigationBar.tintColor = UIColor.colorWith(name: Resources.Colors.inActive)
+            searchController.searchBar.isHidden = true
+        } else {
+            navigationController?.navigationBar.tintColor = UIColor.colorWith(name: Resources.Colors.active)
+            searchController.searchBar.isHidden = false
+            searchController.searchBar.becomeFirstResponder()
+        }
+    }
+    
+    private func setSearchController() {
+        //        searchController.hidesNavigationBarDuringPresentation = true
+        //        searchController.searchBar.sizeToFit()
+        //        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.isHidden = true
+        searchController.searchBar.placeholder = "BTC"
+        definesPresentationContext = true
+        
+        if let textField =
+            searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.font = UIFont.boldSystemFont(ofSize: 17)
+        }
     }
     
     private func setTableView() {
@@ -162,30 +151,46 @@ class CoinMarketViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor,
-                                           constant: 10),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                              constant: -10)
+                                              constant: -10),
+            
+            activityIndicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
     
-   
+    
     
     deinit {
         print("CoinMarketViewController")
     }
+    private func coinNotFounding(stutus: StutusAlert) {
+            let alert = UIAlertController(
+                title: stutus.title,
+                message: stutus.message,
+                preferredStyle: .alert
+            )
+            
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(okAction)
+            present(alert, animated: true)
+    }
 }
+
+
+
 
 // MARK: - UITableViewDataSource
 extension CoinMarketViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-//        isFiltering ? filteredMarket.count : viewModel.numberOfRows()
-        viewModel.numberOfRows(for: isFiltering)
+        activityIndicator.isAnimating ? 0 : viewModel.numberOfRows(for: isFiltering)
     }
     
     func tableView(_ tableView: UITableView,
@@ -193,10 +198,6 @@ extension CoinMarketViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CoinMarketCell.identifier,
                                                  for: indexPath)
         guard let cell = cell as? CoinMarketCell else { return UITableViewCell() }
-//        let coinOnMarket = isFiltering
-//        ? viewModel.getCoinMarketViewModel(at: indexPath)
-//        //filteredMarket[indexPath.row].symbol
-//        : viewModel.getCoinMarketViewModel(at: indexPath)
         cell.viewModel = viewModel.getCoinMarketViewModel(at: indexPath, for: isFiltering)
         return cell
     }
@@ -208,34 +209,50 @@ extension CoinMarketViewController: UITableViewDelegate {
                    didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-//        let selectCoin = isFiltering
-//        ? filteredMarket[indexPath.row]
-//        : markets[indexPath.row]
-//        performSegue(withIdentifier: "addCoin", sender: selectCoin)
+        //        let selectCoin = isFiltering
+        //        ? filteredMarket[indexPath.row]
+        //        : markets[indexPath.row]
+        //        performSegue(withIdentifier: "addCoin", sender: selectCoin)
     }
 }
 
-// MARK: - UISearchResultsUpdating
-extension CoinMarketViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        
-        guard let query = searchBar.text,
-              !query.trimmingCharacters(in: .whitespaces).isEmpty,
-              query.trimmingCharacters(in: .whitespaces).count >= 2 else {
-                  return
-              }
-        
-        activityIndicator.startAnimating()
-        viewModel.fetchSearch(from: query) { [weak self] in
-            self?.tableView.reloadData()
-            self?.activityIndicator.stopAnimating()
-        }
-//        fetchSearch(
-//        fetchSearch(from: query)
-    }
-}
-
+// MARK: - UISearchBarDelegate
 extension CoinMarketViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        showSearchBarButton()
+    }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        activityIndicator.startAnimating()
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
+
+        if text.isEmpty {
+            activityIndicator.stopAnimating()
+//            coinNotFounding(stutus: .failed)
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("Search text is \(searchText)", isFiltering)
+        activityIndicator.startAnimating()
+        tableView.reloadData()
+        
+        if !searchText.trimmingCharacters(in: .whitespaces).isEmpty,
+           searchText.trimmingCharacters(in: .whitespaces).count >= 2 {
+            
+            viewModel.fetchSearch(from: searchText) { [weak self] in
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.reloadData()
+            }
+        } else {
+            activityIndicator.stopAnimating()
+//            coinNotFounding(stutus: .failed)
+            tableView.reloadData()
+        }
+    }
 }
