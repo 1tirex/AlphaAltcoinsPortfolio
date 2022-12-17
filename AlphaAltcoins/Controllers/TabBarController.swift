@@ -23,8 +23,8 @@ class TabBarController: UITabBarController {
     }
     
     private func configure() {
-        tabBar.tintColor = UIColor.colorWith(name: Resources.Colors.active)
-        tabBar.unselectedItemTintColor = UIColor.colorWith(name: Resources.Colors.inActive)
+        setColorTabBar()
+        setBackgroundColor()
         
         let portfolioController = generateVC(
             viewControler: PortfolioViewController(),
@@ -58,4 +58,34 @@ class TabBarController: UITabBarController {
             VC.tabBarItem.image = image
             return VC
         }
+    
+    private func setBackgroundColor() {
+        view.backgroundColor =
+        UIColor { traitCollection in
+            switch traitCollection.userInterfaceStyle {
+            case .dark:
+                return UIColor.colorWith(name: Resources.Colors.background)
+                ?? .systemBackground
+            default:
+                return UIColor.colorWith(name: Resources.Colors.secondaryBackground)
+                ?? .systemGray6
+            }
+        }
+    }
+    
+    private func setColorTabBar() {
+        let tabBarAppearance = UITabBarAppearance()
+        let tabBarItemAppearance = UITabBarItemAppearance()
+        tabBarAppearance.configureWithTransparentBackground()
+        tabBarItemAppearance.configureWithDefault(for: .inline)
+        tabBarItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.secondaryLabel]
+        tabBarItemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.secondaryLabel]
+        tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
+        tabBar.standardAppearance = tabBarAppearance
+        tabBar.scrollEdgeAppearance = tabBarAppearance
+        
+        tabBar.barTintColor = view.backgroundColor
+        tabBar.tintColor = UIColor.colorWith(name: Resources.Colors.active)
+        tabBar.unselectedItemTintColor = UIColor.colorWith(name: Resources.Colors.inActive)
+    }
 }

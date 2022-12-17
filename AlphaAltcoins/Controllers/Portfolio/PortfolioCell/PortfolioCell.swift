@@ -12,7 +12,7 @@ class PortfolioCell: UITableViewCell {
     
     let coinName = UILabel()
     let coinTotal = UILabel()
-    let coinPrice = UILabel()
+    let coinAmount = UILabel()
     let gainProfit = UILabel()
     let coinExchenge = UILabel()
     let coinImage = UIImageView()
@@ -21,7 +21,7 @@ class PortfolioCell: UITableViewCell {
         didSet {
             coinName.text = viewModel.coinName
             coinTotal.text = viewModel.coinTotal
-            coinPrice.text = viewModel.coinPrice
+            coinAmount.text = viewModel.coinAmount
             gainProfit.text = viewModel.gainProfit
             gainProfit.textColor = UIColor.colorWith(name: viewModel.color)
             coinExchenge.text = viewModel.exchenge
@@ -31,7 +31,7 @@ class PortfolioCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubviews(coinName, coinTotal, coinPrice, gainProfit, coinExchenge, coinImage)
+        addSubviews(coinName, coinTotal, coinAmount, gainProfit, coinExchenge, coinImage)
         configure()
     }
     
@@ -64,12 +64,12 @@ class PortfolioCell: UITableViewCell {
         coinName.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
         coinName.leadingAnchor.constraint(equalTo: self.coinImage.trailingAnchor, constant: 10).isActive = true
         
-        coinPrice.translatesAutoresizingMaskIntoConstraints = false
-        coinPrice.numberOfLines = 1
-        coinPrice.font = UIFont.helvelticaRegular(with: 15)
-        coinPrice.textColor = UIColor.colorWith(name: Resources.Colors.inActive)
-        coinPrice.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
-        coinPrice.leadingAnchor.constraint(equalTo: self.coinImage.trailingAnchor, constant: 10).isActive = true
+        coinAmount.translatesAutoresizingMaskIntoConstraints = false
+        coinAmount.numberOfLines = 1
+        coinAmount.font = UIFont.helvelticaRegular(with: 15)
+        coinAmount.textColor = UIColor.colorWith(name: Resources.Colors.inActive)
+        coinAmount.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
+        coinAmount.leadingAnchor.constraint(equalTo: self.coinImage.trailingAnchor, constant: 10).isActive = true
         
         coinTotal.translatesAutoresizingMaskIntoConstraints = false
         coinTotal.numberOfLines = 1

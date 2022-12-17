@@ -7,6 +7,72 @@
 
 import Foundation
 
-protocol CoinMarketViewModel {
+protocol CoinMarketViewModelProtocol {
+    func numberOfRows(for: Bool) -> Int
+    func getCoinMarketViewModel(at indexPath: IndexPath, for: Bool) -> CoinMarketCellViewModelProtocol
+    func fetchCoins(completion: @escaping() -> Void)
+    func fetchSearch(from: String, completion: @escaping() -> Void)
+}
+
+class CoinMarketViewModel: CoinMarketViewModelProtocol {
     
+    private var foundСoin: AssetsCoin?
+    private var coins: [AssetsCoin] = []
+    
+    func fetchCoins(completion: @escaping () -> Void) {
+        NetworkManager.shared.fetch(
+            type: Assets.self,
+            needFor: .assetsCoin,
+            completion: { [unowned self] result in
+                switch result {
+                case .success(let loadCoin):
+                    self.coins = loadCoin.assets ?? []
+                case .failure(let error):
+                    print(error)
+                }
+                completion()
+            })
+    }
+    
+    func fetchSearch(from coin: String, completion: @escaping () -> Void) {
+            NetworkManager.shared.fetch(
+                type: Assets.self,
+                needFor: .coinSearch,
+                coin: coin.lowercased(),
+                completion: { [unowned self] result in
+                    switch result {
+                    case .success(let loadCoin):
+                        self.filterContentForSearchText(coin, loadCoin.asset)
+//                        self?.activityIndicator.stopAnimating()
+//                        self?.tableView.reloadData()
+                    case .failure(let error):
+                        print(error)
+                    }
+                    completion()
+                })
+    }
+    
+    private func filterContentForSearchText(_ searchText: String,
+                                            _ loadMarket: AssetsCoin?) {
+        if loadMarket?.symbol.uppercased() == searchText.uppercased() {
+            foundСoin = loadMarket
+        } else {
+            print("not found coin")
+        }
+//        loadMarket.filter { market in
+//            market.symbol.uppercased() == searchText.uppercased()
+//        }
+//        tableView.reloadData()
+    }
+    
+    func numberOfRows(for activity: Bool) -> Int {
+        activity ? 1 : coins.count
+//        coins.count
+    }
+    
+    func getCoinMarketViewModel(at indexPath: IndexPath, for activity: Bool) -> CoinMarketCellViewModelProtocol {
+        activity
+        ? CoinMarketCellViewModel(coin: foundСoin)
+        : CoinMarketCellViewModel(coin: coins[indexPath.row])
+    }
 }

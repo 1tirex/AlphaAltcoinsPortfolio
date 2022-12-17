@@ -35,15 +35,19 @@ final class PortfolioViewController: UIViewController {
     
     private func configure() {
         setBackgroundColor()
-        addSubviews(activityIndicator, walletLabel, profitWalletLabel, tableView)
+        addSubviews(walletLabel, profitWalletLabel, tableView)
         showActivityIndicator(in: view)
         setupNavigationBar()
         setConstraints()
+        settingLabel()
         setupTableView()
     }
     
     private func addSubviews(_ views: UIView...) {
-        views.forEach { view.addSubview($0) }
+        views.forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     private func setBackgroundColor() {
@@ -72,6 +76,7 @@ final class PortfolioViewController: UIViewController {
     }
     
     private func showActivityIndicator(in view: UIView) {
+        view.addSubview(activityIndicator)
         activityIndicator.style = .large
         activityIndicator.color = .systemIndigo
         activityIndicator.center = view.center
@@ -92,6 +97,18 @@ final class PortfolioViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    private func settingLabel() {
+        setLabel(for: walletLabel,
+                 with: viewModel.walletBalance,
+                 size: 40,
+                 color: UIColor.colorWith(name: Resources.Colors.active))
+        
+        setLabel(for: profitWalletLabel,
+                 with: viewModel.profitLabel,
+                 size: 20,
+                 color: UIColor.colorWith(name: Resources.Colors.inActive))
+    }
+    
     private func setLabel(for label: UILabel,
                           with text: String,
                           size: Double,
@@ -101,33 +118,26 @@ final class PortfolioViewController: UIViewController {
         label.textColor = color
         label.numberOfLines = 1
         label.font = UIFont.helvelticaRegular(with: size)
-        label.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    
+    
     private func setConstraints() {
-        setLabel(for: walletLabel,
-                 with: viewModel.walletLabel,
-                 size: 40,
-                 color: UIColor.colorWith(name: Resources.Colors.active))
-        walletLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                         constant: 20).isActive = true
-        walletLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                             constant: 25).isActive = true
-        
-        setLabel(
-            for: profitWalletLabel,
-            with: "0.00$",
-            size: 20,
-            color: UIColor.colorWith(name: Resources.Colors.inActive))
-        profitWalletLabel.topAnchor.constraint(equalTo: walletLabel.bottomAnchor,
-                                               constant: 5).isActive = true
-        profitWalletLabel.leadingAnchor.constraint(equalTo: walletLabel.leadingAnchor).isActive = true
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: profitWalletLabel.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            walletLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                             constant: 20),
+            walletLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                 constant: 25),
+            
+            profitWalletLabel.topAnchor.constraint(equalTo: walletLabel.bottomAnchor,
+                                                   constant: 5),
+            profitWalletLabel.leadingAnchor.constraint(equalTo: walletLabel.leadingAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: profitWalletLabel.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     deinit {

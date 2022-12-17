@@ -26,13 +26,10 @@ public struct CreateLink {
             let url = "https://cryptingup.com/api/markets?size=all"
             self.url = url
         case .coinSearch:
-            let url = "https://cryptingup.com/api/assets/\(coin.uppercased())/markets"
+            let url = "https://cryptingup.com/api/assets/\(coin.uppercased())"
             self.url = url
-        case .nameCoin:
-            let url = "https://cryptingup.com/api/assetsoverview"
-            self.url = url
-        case .nothing:
-            let url = "https://cryptingup.com/api/markets?size=10"
+        case .assetsCoin:
+            let url = "https://cryptingup.com/api/assets?size=10"
             self.url = url
         case .postRequest:
             let url = "https://jsonplaceholder.typicode.com/posts"
@@ -43,6 +40,7 @@ public struct CreateLink {
 
 public extension CreateLink {
     enum TypeLink: String {
-        case markets, marketsAll, coinSearch, nameCoin, postRequest, nothing
+        case markets, marketsAll, coinSearch, assetsCoin, postRequest
     }
 }
+//            let url = "https://cryptingup.com/api/assets/\(coin.uppercased())/markets"

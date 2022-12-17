@@ -10,17 +10,17 @@ import Foundation
 protocol PortfolioCellViewModelProtocol {
     var coinName: String { get }
     var coinTotal: String { get }
-    var coinPrice: String { get }
+    var coinAmount: String { get }
     var gainProfit: String { get }
     var imageData: String { get }
     var exchenge: String { get }
     var color: String { get }
-    init(coin: MarketsInfo)
+    init(coin: CoinInfo)
 }
 
 class PortfolioCellViewModel: PortfolioCellViewModelProtocol {
-    var coinPrice: String {
-        "\(String(format: "%.2f", coin.price))$"
+    var coinAmount: String {
+        "\(coin.amountCoins ?? "0.00") \(coin.symbol.uppercased())"
     }
     
     var color: String {
@@ -28,7 +28,7 @@ class PortfolioCellViewModel: PortfolioCellViewModelProtocol {
     }
     
     var coinTotal: String {
-        "\(String(format: "%.2f", removeCharacter(from: coin.totalPrice ?? "")))$"
+        "$\(String(format: "%.2f", removeCharacter(from: coin.totalPrice ?? "")))"
     }
     
     var gainProfit: String {
@@ -47,9 +47,9 @@ class PortfolioCellViewModel: PortfolioCellViewModelProtocol {
         "logo"
     }
     
-    private let coin : MarketsInfo
+    private let coin : CoinInfo
     
-    required init(coin: MarketsInfo) {
+    required init(coin: CoinInfo) {
         self.coin = coin
     }
     
@@ -58,8 +58,6 @@ class PortfolioCellViewModel: PortfolioCellViewModelProtocol {
         ? "systemPink"
         : "systemGreen"
     }
-    
-
     
     private func removeCharacter(from text: String) -> Float {
         let newCharSet = CharacterSet.init(charactersIn: "-+$%")
