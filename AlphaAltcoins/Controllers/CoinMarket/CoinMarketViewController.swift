@@ -13,8 +13,10 @@ class CoinMarketViewController: UIViewController {
     private let tableView =
     UITableView(frame: .zero,
                 style: .insetGrouped)
+    
     private let searchController =
     UISearchController(searchResultsController: nil)
+    
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text
         else {
@@ -22,9 +24,11 @@ class CoinMarketViewController: UIViewController {
         }
         return text.isEmpty
     }
+    
     private var isFiltering: Bool {
         searchController.isActive && !searchBarIsEmpty
     }
+    
     private var viewModel: CoinMarketViewModelProtocol! {
         didSet {
             viewModel.fetchCoins { [weak self] in
@@ -41,7 +45,6 @@ class CoinMarketViewController: UIViewController {
         setupUI()
         addSubviews(tableView)
         showActivityIndicator(in: view)
-        addNavBarButton()
         setConstraints()
     }
     
@@ -86,6 +89,7 @@ class CoinMarketViewController: UIViewController {
     private func setNavigationBar() {
         navigationItem.title = "Coin Market"
         navigationController?.navigationBar.isTranslucent = false
+        
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithTransparentBackground()
         navBarAppearance.backgroundColor = .clear
@@ -95,26 +99,37 @@ class CoinMarketViewController: UIViewController {
         navBarAppearance.largeTitleTextAttributes = [
             .foregroundColor: UIColor.colorWith(name: Resources.Colors.inActive) ?? .white
         ]
+        
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
-//        showSearchBarButton(shouldShow: true)
-        
+        navigationItem.rightBarButtonItem =
+        UIBarButtonItem(barButtonSystemItem: .search,
+                        target: self,
+                        action: #selector(showSearchTab))
+        showSearchBarButton(shouldShow: true)
     }
+    
     func showSearchBarButton(shouldShow: Bool) {
         if shouldShow {
-//                            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: searchController,
-//                                                                                target: self,
-//                                                                                action: #selector(handleShowSearchBar))
+            navigationController?.navigationBar.tintColor = UIColor.colorWith(name: Resources.Colors.active)
+            searchController.searchBar.isHidden = false
         } else {
-            //                self.navigationItem.searchController = searchController
-            //                navigationItem.rightBarButtonItem = nil
+            navigationController?.navigationBar.tintColor = UIColor.colorWith(name: Resources.Colors.inActive)
+            searchController.searchBar.isHidden = true
         }
     }
     
-
+    func search(shouldShow: Bool) {
+        showSearchBarButton(shouldShow: !shouldShow)
+//        searchController.searchBar.showsCancelButton = shouldShow
+        navigationItem.titleView = shouldShow ? searchController.searchBar : nil
+    }
     
     private func setSearchController() {
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.delegate = self
+        
         self.searchController.searchResultsUpdater = self
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.definesPresentationContext = true
@@ -130,35 +145,10 @@ class CoinMarketViewController: UIViewController {
         }
     }
     
-    private func addNavBarButton(with title: String = "") {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        button.addTarget(self, action: #selector(showSearchTab), for: .touchUpInside)
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
-    }
-    
     @objc private func showSearchTab(sender: AnyObject) {
-        let button = navigationController?.navigationBar
-
-        if button?.tintColor == UIColor.colorWith(name: Resources.Colors.inActive) {
-            button?.tintColor = UIColor.colorWith(name: Resources.Colors.active)
-            searchController.becomeFirstResponder()
-            searchController.searchBar.isHidden = false
-            navigationItem.titleView = nil
-        } else {
-            button?.tintColor = UIColor.colorWith(name: Resources.Colors.inActive)
-            searchController.searchBar.isHidden = true
-            navigationItem.titleView = searchController.searchBar
-        }
-        tableView.reloadData()
+        searchController.becomeFirstResponder()
+        search(shouldShow: true)
     }
-    
-//    func search(shouldShow: Bool) {
-//        showSearchBarButton(shouldShow: !shouldShow)
-//        searchBar.showsCancelButton = shouldShow
-//        navigationItem.titleView = shouldShow ? searchBar : nil
-//    }
     
     private func setTableView() {
         tableView.register(
@@ -244,4 +234,8 @@ extension CoinMarketViewController: UISearchResultsUpdating {
 //        fetchSearch(
 //        fetchSearch(from: query)
     }
+}
+
+extension CoinMarketViewController: UISearchBarDelegate {
+    
 }
