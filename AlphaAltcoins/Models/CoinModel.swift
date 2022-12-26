@@ -13,6 +13,7 @@ struct CoinsMarketsInfo: Codable {
     let next: String
 }
 
+// MARK: - CoinInfo
 struct CoinInfo: Codable {
     let name: String?
     let percent: String?
@@ -86,6 +87,7 @@ struct Assets: Codable {
     let next: String?
 }
 
+// MARK: - AssetsCoin
 struct AssetsCoin: Codable {
     let symbol: String
     let name: String

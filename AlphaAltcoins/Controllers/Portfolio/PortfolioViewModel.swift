@@ -17,30 +17,32 @@ protocol PortfolioViewModelProtocol {
     func getPortfolioCellViewModel(at indexPath: IndexPath) -> PortfolioCellViewModelProtocol
 }
 
-class PortfolioViewModel: PortfolioViewModelProtocol {
-    
+final class PortfolioViewModel: PortfolioViewModelProtocol {
+    // MARK: - Public Properties
     var walletBalance: String {
         get {
             reloadBalance()
-        } set {
+        }
+        set {
             viewModelDidChange?(self)
         }
     }
-    
     var profitLabel: String {
         get {
             profit ?? ""
-        } set {
+        }
+        set {
             viewModelDidChange?(self)
         }
     }
-    
     var viewModelDidChange: ((PortfolioViewModelProtocol) -> Void)?
     
+    // MARK: - Private Properties
     private var wallet: String?
     private var profit: String?
     private var coins: [CoinInfo] = []
-    
+
+    // MARK: - Public methods
     func fetchMarkets(completion: @escaping () -> Void) {
         coins = [CoinInfo(name: "bitcoin",
                           totalPrice: "1300",
@@ -80,7 +82,6 @@ class PortfolioViewModel: PortfolioViewModelProtocol {
                           volume24Hour: 0,
                           created: "",
                           updated: "")]
-//        walletBalance = reloadWallet()
         //        coins = StorageManager.shared.fetchCoins()
         completion()
     }
@@ -108,14 +109,20 @@ class PortfolioViewModel: PortfolioViewModelProtocol {
                             from: 0,
                             with: procent,
                             completion: { newProfit += $0 })
-            
-            
-//            newWallet = wallet
         }
         profit = "\(String(format: "%.2f", newProfit))"
         return "$\(String(format: "%.2f", newWallet))"
     }
     
+    func numberOfRows() -> Int {
+        coins.count
+    }
+    
+    func getPortfolioCellViewModel(at indexPath: IndexPath) -> PortfolioCellViewModelProtocol {
+        PortfolioCellViewModel(coin: coins[indexPath.row])
+    }
+    
+    // MARK: - Private methods
     private func removeCharacter(from text: String) -> Float {
         let newCharSet = CharacterSet.init(charactersIn: "-+$%")
         return getFloat(from: text.components(separatedBy: newCharSet).joined())
@@ -135,12 +142,4 @@ class PortfolioViewModel: PortfolioViewModelProtocol {
             ? (completion(total - profit))
             : (completion(total + profit))
         }
-    
-    func numberOfRows() -> Int {
-        coins.count
-    }
-    
-    func getPortfolioCellViewModel(at indexPath: IndexPath) -> PortfolioCellViewModelProtocol {
-        PortfolioCellViewModel(coin: coins[indexPath.row])
-    }
 }

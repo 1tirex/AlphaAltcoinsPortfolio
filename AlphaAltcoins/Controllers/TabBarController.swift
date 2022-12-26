@@ -15,7 +15,7 @@ import UIKit
 //    case profile
 //}
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,8 @@ class TabBarController: UITabBarController {
     }
     
     private func configure() {
-        setColorTabBar()
         setBackgroundColor()
+        setColorTabBar()
         
         let portfolioController = generateVC(
             viewControler: PortfolioViewController(),

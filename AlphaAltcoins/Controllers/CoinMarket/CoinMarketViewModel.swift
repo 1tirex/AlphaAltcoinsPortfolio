@@ -14,11 +14,13 @@ protocol CoinMarketViewModelProtocol {
     func fetchSearch(from: String, completion: @escaping() -> Void)
 }
 
-class CoinMarketViewModel: CoinMarketViewModelProtocol {
+final class CoinMarketViewModel: CoinMarketViewModelProtocol {
     
+    // MARK: - Public Properties
     private var foundСoin: AssetsCoin?
     private var coins: [AssetsCoin] = []
     
+    // MARK: - Public methods
     func fetchCoins(completion: @escaping () -> Void) {
         NetworkManager.shared.fetch(
             type: Assets.self,
@@ -50,16 +52,6 @@ class CoinMarketViewModel: CoinMarketViewModelProtocol {
             })
     }
     
-    
-    private func filterContentForSearchText(_ searchText: String,
-                                            _ loadMarket: AssetsCoin?) {
-        if loadMarket?.symbol.uppercased() == searchText.uppercased() {
-            foundСoin = loadMarket
-        } else {
-            print("not found coin")
-        }
-    }
-    
     func numberOfRows(for activity: Bool) -> Int {
         activity ? 1 : coins.count
     }
@@ -78,6 +70,16 @@ class CoinMarketViewModel: CoinMarketViewModelProtocol {
                                                                 maxSupply: nil,
                                                                 marketCup: 0))
         : CoinMarketCellViewModel(coin: coins[indexPath.row])
+    }
+    
+    // MARK: - Private methods
+    private func filterContentForSearchText(_ searchText: String,
+                                            _ loadMarket: AssetsCoin?) {
+        if loadMarket?.symbol.uppercased() == searchText.uppercased() {
+            foundСoin = loadMarket
+        } else {
+            print("not found coin")
+        }
     }
 }
 

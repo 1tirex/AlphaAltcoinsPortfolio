@@ -8,12 +8,10 @@
 import Foundation
 
 public struct CreateLink {
-    
     public let needLinkFor: TypeLink
     public let coin: String
     public let url: String
     
-    // MARK: Initialization
     public init(needLinkFor: TypeLink, baseAsset coin: String = "") {
         self.needLinkFor = needLinkFor
         self.coin = coin
@@ -38,6 +36,7 @@ public struct CreateLink {
     }
 }
 
+// MARK: - CreateLink
 public extension CreateLink {
     enum TypeLink: String {
         case markets, marketsAll, coinSearch, assetsCoin, postRequest

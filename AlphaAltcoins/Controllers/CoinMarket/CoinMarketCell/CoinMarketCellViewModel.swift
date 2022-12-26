@@ -18,7 +18,7 @@ protocol CoinMarketCellViewModelProtocol {
     init(coin: AssetsCoin)
 }
 
-class CoinMarketCellViewModel: CoinMarketCellViewModelProtocol {
+final class CoinMarketCellViewModel: CoinMarketCellViewModelProtocol {
     var coinSymbol: String {
         "(\(coin.symbol))"
     }

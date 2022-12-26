@@ -9,11 +9,11 @@ import UIKit
 
 final class PortfolioViewController: UIViewController {
     
+    // MARK: - Private Properties
     private let walletLabel = UILabel()
     private let profitWalletLabel = UILabel()
     private let activityIndicator = UIActivityIndicatorView()
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
-    
     private var viewModel: PortfolioViewModelProtocol! {
         didSet {
             viewModel.fetchMarkets { [weak self] in

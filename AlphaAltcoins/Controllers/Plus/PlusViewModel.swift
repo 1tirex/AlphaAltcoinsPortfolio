@@ -7,6 +7,10 @@
 
 import Foundation
 
-protocol PlusViewModel {
+protocol PlusViewModelProtocol {
+    
+}
+
+final class PlusViewModel: PlusViewModelProtocol {
     
 }
